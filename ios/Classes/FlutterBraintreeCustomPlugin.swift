@@ -40,7 +40,7 @@ public class FlutterBraintreeCustomPlugin: BaseFlutterBraintreePlugin, FlutterPl
                 paypalRequest.currencyCode = requestInfo["currencyCode"] as? String
                 paypalRequest.displayName = requestInfo["displayName"] as? String
                 paypalRequest.billingAgreementDescription = requestInfo["billingAgreementDescription"] as? String
-                
+
                 driver.tokenizePayPalAccount(with: paypalRequest) { (nonce, error) in
                     self.handleResult(nonce: nonce, error: error, flutterResult: result)
                     self.isHandlingResult = false
@@ -60,13 +60,14 @@ public class FlutterBraintreeCustomPlugin: BaseFlutterBraintreePlugin, FlutterPl
             let cardClient = BTCardClient(apiClient: client!)
             
             guard let cardRequestInfo = dict(for: "request", in: call) else {return}
-            
+
             let card = BTCard()
             card.number = cardRequestInfo["cardNumber"] as? String
             card.expirationMonth = cardRequestInfo["expirationMonth"] as? String
             card.expirationYear = cardRequestInfo["expirationYear"] as? String
             card.cvv = cardRequestInfo["cvv"] as? String
-            
+            card.cardholderName = cardRequestInfo["cardholderName"] as? String
+
             cardClient.tokenizeCard(card) { (nonce, error) in
                 self.handleResult(nonce: nonce, error: error, flutterResult: result)
                 self.isHandlingResult = false
