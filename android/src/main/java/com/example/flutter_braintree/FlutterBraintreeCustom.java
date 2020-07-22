@@ -50,7 +50,9 @@ public class FlutterBraintreeCustom extends AppCompatActivity implements Payment
         CardBuilder builder = new CardBuilder()
                 .cardNumber(intent.getStringExtra("cardNumber"))
                 .expirationMonth(intent.getStringExtra("expirationMonth"))
-                .expirationYear(intent.getStringExtra("expirationYear"));
+                .expirationYear(intent.getStringExtra("expirationYear"))
+                .cvv(intent.getStringExtra("cvv"))
+                .cardholderName(intent.getStringExtra("cardholderName"));
         Card.tokenize(braintreeFragment, builder);
     }
 
