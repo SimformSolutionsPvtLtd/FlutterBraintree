@@ -75,6 +75,7 @@ class _MyAppState extends State<MyApp> {
                   expirationMonth: '12',
                   expirationYear: '2021',
                   cvv: '123',
+                  cardholderName: 'Alex'
                 );
                 final result = await Braintree.tokenizeCreditCard(
                   tokenizationKey,
